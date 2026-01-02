@@ -36,7 +36,7 @@ The app demonstrates:
 ## Cognito Setup (One-Time)
 
 1. Create a **User Pool**.
-2. Create an **App client** (no client secret).
+2. Create an **App client** (no client secret for browser-based flow).
 3. Enable **Hosted UI** and choose a domain name.
 4. Configure **Callback URLs** and **Logout URLs**:
    - `http://localhost:5173`
@@ -176,6 +176,7 @@ Frontend:
 ```
 VITE_COGNITO_DOMAIN
 VITE_COGNITO_CLIENT_ID
+VITE_COGNITO_CLIENT_SECRET (optional; only if app client uses a secret)
 VITE_REDIRECT_URI
 VITE_LOGOUT_URI
 VITE_SCOPES

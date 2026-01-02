@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 const config = {
   domain: import.meta.env.VITE_COGNITO_DOMAIN,
   clientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+  clientSecret: import.meta.env.VITE_COGNITO_CLIENT_SECRET,
   redirectUri: import.meta.env.VITE_REDIRECT_URI,
   logoutUri: import.meta.env.VITE_LOGOUT_URI,
   scopes: import.meta.env.VITE_SCOPES || "openid email profile",
@@ -84,9 +85,16 @@ export default function App() {
           code_verifier: verifier
         });
 
+        const headers = { "Content-Type": "application/x-www-form-urlencoded" };
+        if (config.clientSecret) {
+          headers.Authorization = `Basic ${btoa(
+            `${config.clientId}:${config.clientSecret}`
+          )}`;
+        }
+
         const response = await fetch(`https://${config.domain}/oauth2/token`, {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          headers,
           body: body.toString()
         });
 
