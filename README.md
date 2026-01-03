@@ -170,6 +170,7 @@ Backend:
 COGNITO_REGION
 COGNITO_USER_POOL_ID
 COGNITO_APP_CLIENT_ID
+CORS_ALLOW_ORIGINS (comma-separated, defaults to http://localhost:5173)
 ```
 
 Frontend:
